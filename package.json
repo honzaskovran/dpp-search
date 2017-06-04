@@ -1,0 +1,19 @@
+{
+  "name": "dpp-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honzaskovran/dpp-search.git"
+  },
+  "author": "Honza Škovran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/honzaskovran/dpp-search/issues"
+  },
+  "homepage": "https://github.com/honzaskovran/dpp-search#readme"
+}
