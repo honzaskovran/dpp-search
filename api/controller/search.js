@@ -1,6 +1,15 @@
 'use strict';
-
+const DppParser = require('../model/DppParser');
 exports.findConnection = (request, response) => {
-  console.log(request);
-  return response.json({'result': 'found'})
+  const params = {
+    from: request.query.from,
+    to: request.query.to,
+    across: request.query.across || '',
+    date: request.query.date,
+    time: request.query.time,
+    isDeparture: request.query.isDeparture || 1
+  };
+
+  const callback = (restResponse) => (response) => { const responseJSON = restResponse.json(response); restResponse.send(responseJSON)};
+  DppParser(params, callback(response));
 };
