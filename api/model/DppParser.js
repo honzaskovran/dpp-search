@@ -34,9 +34,10 @@ const parseResponse = (response) => {
   const $ = cheerio.load(response);
   $('div.spojeni').each((i, el) => {
     const $connection = $(el);
-    const $route = $connection.find('.usek');
-    const connection = [];
-    $route.each((i, el) => {
+    const $routes = $connection.find('.usek');
+    const connection = Object.assign(extractDuration($connection.find('h3')), {routes: []});
+
+    $routes.each((i, el) => {
       const route = extractRouteType($(el));
 
       route.start = {
@@ -49,7 +50,7 @@ const parseResponse = (response) => {
         time: extractTime($(el).find('.cil').text())
       };
 
-      connection.push(route);
+      connection.routes.push(route);
     });
     connections.push(connection);
   });
@@ -72,4 +73,12 @@ const extractRouteType = ($el) => {
   const arr = string.split(' ');
 
   return {type: arr[0], line: arr[1]}
+};
+
+const extractDuration = ($el) => {
+  const startEnd = $el.find('strong').text().split(' ');
+  return {
+    start: startEnd[0],
+    end: startEnd[startEnd.length - 1]
+  };
 };
