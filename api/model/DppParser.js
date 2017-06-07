@@ -38,17 +38,23 @@ const parseResponse = (response) => {
     const connection = Object.assign(extractDuration($connection.find('h3')), {routes: []});
 
     $routes.each((i, el) => {
-      const route = extractRouteType($(el));
+      const $el = $(el);
+      const $walk = $el.next('.walk');
+      const route = extractRouteType($el);
 
       route.start = {
-        station: $(el).find('.start a').text(),
-        time: extractTime($(el).find('.start').text())
+        station: $el.find('.start a').text(),
+        time: extractTime($el.find('.start').text())
       };
 
       route.end = {
-        station: $(el).find('.cil a').text(),
-        time: extractTime($(el).find('.cil').text())
+        station: $el.find('.cil a').text(),
+        time: extractTime($el.find('.cil').text())
       };
+
+      if($walk.text()) {
+        route.walkDuration = $walk.text().match(/\d+/)[0];
+      }
 
       connection.routes.push(route);
     });
@@ -58,7 +64,7 @@ const parseResponse = (response) => {
 };
 
 const extractTime = (string) => {
-  // remove fucking two dots from end markup
+  // remove two dots from end of markup
   string = string.replace('. .', '');
 
   const arr = string.split(' ');

@@ -63,6 +63,7 @@ Result JSON contains array of found connections (0-3). Connection contains route
           "station": "Station name",
           "time": "HH:MM"
         }
+        "walkDuration": "duration in minutes"
       },
       ...
     ]
