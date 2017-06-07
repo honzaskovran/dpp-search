@@ -21,13 +21,13 @@ Run project:
 yarn start
 ```
 
-##Configuration
+## Configuration
 
 You can set port using `.env` file like `PORT=3001`
 
-##Usage
+## Usage
 
-###Find connection
+### Find connection
 ```GET localhost:3000/find-connection```
 
 **Parameters:**
@@ -71,6 +71,6 @@ Result JSON contains array of found connections (0-3). Connection contains route
 ]
 ```
 
-##Demo
+## Demo
 
 [Demo](http://dpp-search.obiwan.cloud/) is simple app that uses dpp-search API to search connections. Besides a formatted result, demo also reveals used data and result JSON.
